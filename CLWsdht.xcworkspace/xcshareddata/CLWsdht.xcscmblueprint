@@ -1,0 +1,29 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1903E254AF56FAAF60C871F879B9B8280E5C8111" : 0,
+    "0053EEAF2668E5D0D219298682FAE6071EBCB71F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FE0343AA-F850-4677-89EE-76665365C072",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1903E254AF56FAAF60C871F879B9B8280E5C8111" : "",
+    "0053EEAF2668E5D0D219298682FAE6071EBCB71F" : "CLWsdht\/CLWsdht\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CLWsdht",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CLWsdht.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zm19921219\/CLWsdht.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0053EEAF2668E5D0D219298682FAE6071EBCB71F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/koro1\/CLWcz.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1903E254AF56FAAF60C871F879B9B8280E5C8111"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChoseSparePartsViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-BO-Ytx">
+                    <rect key="frame" x="0.0" y="64" width="320" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xE2-H2-tng">
+                            <rect key="frame" x="0.0" y="1" width="100" height="44"/>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="tWL-z1-rc2"/>
+                                <constraint firstAttribute="width" constant="100" id="uGm-KS-fXY"/>
+                            </constraints>
+                            <state key="normal" title="地区">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.81999999999999995" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gk-iX-WWO">
+                            <rect key="frame" x="220" y="1" width="100" height="44"/>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="YZX-u0-Mol"/>
+                                <constraint firstAttribute="height" constant="44" id="aSe-Sr-fr4"/>
+                            </constraints>
+                            <state key="normal" title="发动机">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.81999999999999995" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="xE2-H2-tng" firstAttribute="top" secondItem="pLL-BO-Ytx" secondAttribute="top" constant="1" id="B25-q0-0PD"/>
+                        <constraint firstAttribute="trailing" secondItem="1Gk-iX-WWO" secondAttribute="trailing" id="HhF-jv-VTN"/>
+                        <constraint firstItem="1Gk-iX-WWO" firstAttribute="top" secondItem="pLL-BO-Ytx" secondAttribute="top" constant="1" id="ag6-Ed-O5O"/>
+                        <constraint firstItem="xE2-H2-tng" firstAttribute="leading" secondItem="pLL-BO-Ytx" secondAttribute="leading" id="eDr-GL-ba7"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrM-Zx-MqF">
+                    <rect key="frame" x="8" y="117" width="143" height="56"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="品牌车型">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.81999999999999995" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MhZ-4Y-m3c">
+                    <rect key="frame" x="169" y="117" width="143" height="56"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="发动机">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.81999999999999995" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xlR-1T-zLz">
+                    <rect key="frame" x="0.0" y="181" width="320" height="387"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="RrM-Zx-MqF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="CL0-Sp-3h0"/>
+                <constraint firstItem="MhZ-4Y-m3c" firstAttribute="top" secondItem="pLL-BO-Ytx" secondAttribute="bottom" constant="8" id="JbK-Pv-Tzk"/>
+                <constraint firstItem="RrM-Zx-MqF" firstAttribute="top" secondItem="pLL-BO-Ytx" secondAttribute="bottom" constant="8" id="JjK-Og-Z5Z"/>
+                <constraint firstItem="MhZ-4Y-m3c" firstAttribute="width" secondItem="RrM-Zx-MqF" secondAttribute="width" id="Lt0-2A-qWJ"/>
+                <constraint firstItem="pLL-BO-Ytx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="N2F-7k-YEK"/>
+                <constraint firstAttribute="trailing" secondItem="pLL-BO-Ytx" secondAttribute="trailing" id="Pze-rA-lrW"/>
+                <constraint firstAttribute="bottom" secondItem="xlR-1T-zLz" secondAttribute="bottom" id="TlI-9s-93Y"/>
+                <constraint firstItem="xlR-1T-zLz" firstAttribute="top" secondItem="MhZ-4Y-m3c" secondAttribute="bottom" constant="8" id="YDX-t8-Zgf"/>
+                <constraint firstItem="MhZ-4Y-m3c" firstAttribute="leading" secondItem="RrM-Zx-MqF" secondAttribute="trailing" constant="18" id="k2h-YA-Vas"/>
+                <constraint firstItem="xlR-1T-zLz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oxV-pG-TBb"/>
+                <constraint firstItem="pLL-BO-Ytx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wE8-sG-zGE"/>
+                <constraint firstAttribute="trailing" secondItem="xlR-1T-zLz" secondAttribute="trailing" id="xpj-VJ-Akw"/>
+                <constraint firstAttribute="trailing" secondItem="MhZ-4Y-m3c" secondAttribute="trailing" constant="8" id="yUV-bh-p0m"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="434" y="237"/>
+        </view>
+    </objects>
+</document>
