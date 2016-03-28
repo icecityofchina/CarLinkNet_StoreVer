@@ -1,13 +1,16 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F86239468CC3EFB0698FCE724794220F3644496C",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F86239468CC3EFB0698FCE724794220F3644496C" : 0,
     "1903E254AF56FAAF60C871F879B9B8280E5C8111" : 0,
     "0053EEAF2668E5D0D219298682FAE6071EBCB71F" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FE0343AA-F850-4677-89EE-76665365C072",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F86239468CC3EFB0698FCE724794220F3644496C" : "CLWsdht\/",
     "1903E254AF56FAAF60C871F879B9B8280E5C8111" : "",
     "0053EEAF2668E5D0D219298682FAE6071EBCB71F" : "CLWsdht\/CLWsdht\/"
   },
@@ -24,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/koro1\/CLWcz.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1903E254AF56FAAF60C871F879B9B8280E5C8111"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ClinicalSoft\/CarNet.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F86239468CC3EFB0698FCE724794220F3644496C"
     }
   ]
 }

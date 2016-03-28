@@ -214,9 +214,9 @@
                                                                    JSONObjectWithData:responseObject
                                                                    options:kNilOptions
                                                                    error:&error];
-                                          NSLog(@"1111111111111%@",jsonDic);
+                                          //NSLog(@"1111111111111%@",jsonDic);
                                           PartsListData *data=[PartsListData mj_objectWithKeyValues:jsonDic];
-                                          NSLog(@"2222222%@",data);
+                                         // NSLog(@"2222222%@",data);
                                           if (data.Success) {
                                               //成功
 
