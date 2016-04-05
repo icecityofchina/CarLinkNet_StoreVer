@@ -42,28 +42,11 @@
 
 -(void)viewDidLoad
 {
-//    NSURL *url=[NSURL URLWithString:@"http://192.168.0.237:8787/UsrStore.asmx?op=GetPartsList"];
-//    NSMutableURLRequest *requeest=[NSMutableURLRequest requestWithURL:url];
-//    [requeest setHTTPMethod:@"post"];
-//    NSString *str1=@"start=0";
-//    NSString *str2=@"limit=10";
-//    
-//    [requeest setHTTPBody:[str1 dataUsingEncoding:NSUTF8StringEncoding]];
-//    [requeest setHTTPBody:[str2 dataUsingEncoding:NSUTF8StringEncoding]];
-//    NSURLSession *session=[NSURLSession sharedSession];
-//    NSURLSessionDataTask *task=[session dataTaskWithRequest:requeest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        NSLog(@"data=%@",data);
-//    }];
-//    [task resume];
-    
-    _modelArray = [[NSMutableArray alloc] initWithCapacity:0];
     
     [super viewDidLoad];
-   
+    
     [self initData];
     
-    [self getMoreGoodsInfoFromNetwork];
- 
     [self initUI];
     
 }
@@ -80,7 +63,7 @@
 
 #pragma mark - Data & UI
 /**
- *   初始化右上角按钮
+ *   初始化左右按钮
  */
 - (void)initRightButtonItemWithCityName:(NSString *)cityName
 {
@@ -121,8 +104,8 @@
 {
     imageArray=[[NSArray alloc]initWithObjects:@"index_gz_iconbj.png",@"index_zmdq_iconbj.png",@"index_dp_iconbj.png",@"index_bj_iconbj.png",@"index_bsx_iconbj.png",@"index_ns_iconbj.png",@"index_gz_iconbj.png",@"index_more_iconbj.png", nil];
     lableArray=[[NSArray alloc]initWithObjects:@"发动机",@"照明电器",@"底盘",@"钣金",@"变速箱",@"内饰",@"改装",@"更多", nil];
-//    [self getMoreGoodsInfoFromNetwork];
-    [self AddOrderByNetwork ];
+    _modelArray = [[NSMutableArray alloc] initWithCapacity:0];
+    [self getMoreGoodsInfoFromNetwork];
 }
 
 //
@@ -206,20 +189,14 @@
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}
                                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                      //http请求状态
                                       if (task.state == NSURLSessionTaskStateCompleted) {
-                                          //            NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
                                           NSError* error;
                                           NSDictionary* jsonDic = [NSJSONSerialization
                                                                    JSONObjectWithData:responseObject
                                                                    options:kNilOptions
                                                                    error:&error];
-                                          //NSLog(@"1111111111111%@",jsonDic);
                                           PartsListData *data=[PartsListData mj_objectWithKeyValues:jsonDic];
-                                         // NSLog(@"2222222%@",data);
                                           if (data.Success) {
-                                              //成功
-
                                               for(PartsModal *modal in data.Data.Data)
                                               {
                                                   UserStoreModel *zm = [[UserStoreModel alloc] init];
@@ -232,12 +209,10 @@
                                                   zm.purityName = modal.PurityName;
                                                   [_modelArray addObject:zm];
                                               }
+                                              [SVProgressHUD dismiss];
                                               [userStoreTableView reloadData];
-                                              [SVProgressHUD showSuccessWithStatus:k_Success_Load];
-                                              NSLog(@"%@", _modelArray);
 
                                           } else {
-                                              //失败
                                               [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
                                               
                                           }
@@ -248,6 +223,7 @@
                                       
                                   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                       //请求异常
+                                      NSLog(@"dfgdfg");
                                       [SVProgressHUD showErrorWithStatus:k_Error_Network];
                                   }];
     
