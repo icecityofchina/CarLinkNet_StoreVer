@@ -10,12 +10,12 @@
 		2944D8651C848313005B6A95 /* PartsListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944D8641C848313005B6A95 /* PartsListData.m */; };
 		2944D8681C84839C005B6A95 /* PartsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944D8671C84839C005B6A95 /* PartsData.m */; };
 		2944D86B1C8484CB005B6A95 /* PartsModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944D86A1C8484CB005B6A95 /* PartsModal.m */; };
-		9843A1581C9CECEF00FAE890 /* HmacSHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 9843A1571C9CECEF00FAE890 /* HmacSHA256.m */; settings = {ASSET_TAGS = (); }; };
-		987D78B51C9CF847005A0A2C /* UsrStoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 987D78B31C9CF847005A0A2C /* UsrStoreTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		987D78B61C9CF847005A0A2C /* UsrStoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987D78B41C9CF847005A0A2C /* UsrStoreTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		987D78BA1C9CF98D005A0A2C /* UserStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 987D78B91C9CF98D005A0A2C /* UserStoreModel.m */; settings = {ASSET_TAGS = (); }; };
-		989626951CA3DB6B00B6F9EB /* per_yrz.png in Resources */ = {isa = PBXBuildFile; fileRef = 989626941CA3DB6B00B6F9EB /* per_yrz.png */; settings = {ASSET_TAGS = (); }; };
-		98D344BD1CA3C909004486BE /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D344BC1CA3C909004486BE /* NullSafe.m */; settings = {ASSET_TAGS = (); }; };
+		9843A1581C9CECEF00FAE890 /* HmacSHA256.m in Sources */ = {isa = PBXBuildFile; fileRef = 9843A1571C9CECEF00FAE890 /* HmacSHA256.m */; };
+		987D78B51C9CF847005A0A2C /* UsrStoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 987D78B31C9CF847005A0A2C /* UsrStoreTableViewCell.m */; };
+		987D78B61C9CF847005A0A2C /* UsrStoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987D78B41C9CF847005A0A2C /* UsrStoreTableViewCell.xib */; };
+		987D78BA1C9CF98D005A0A2C /* UserStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 987D78B91C9CF98D005A0A2C /* UserStoreModel.m */; };
+		989626951CA3DB6B00B6F9EB /* per_yrz.png in Resources */ = {isa = PBXBuildFile; fileRef = 989626941CA3DB6B00B6F9EB /* per_yrz.png */; };
+		98D344BD1CA3C909004486BE /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D344BC1CA3C909004486BE /* NullSafe.m */; };
 		98E8C16A1C49E50800310091 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E8C1691C49E50800310091 /* main.m */; };
 		98E8C1761C49E50800310091 /* CLWsdht.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98E8C1741C49E50800310091 /* CLWsdht.xcdatamodeld */; };
 		98E8C17B1C49E50800310091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98E8C1791C49E50800310091 /* LaunchScreen.storyboard */; };
@@ -107,6 +107,8 @@
 		DF0991D51C5B3223001B6F2D /* ChosePlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0991D31C5B3223001B6F2D /* ChosePlaceViewController.xib */; };
 		DF0991DA1C5B44AC001B6F2D /* repairCarStoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF0991D81C5B44AC001B6F2D /* repairCarStoreViewController.xib */; };
 		DF0991DB1C5C5831001B6F2D /* repairCarStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0991D71C5B44AC001B6F2D /* repairCarStoreViewController.m */; };
+		DF4826F01CB5DF8A00C1D69E /* 车主接口.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF4826EF1CB5DF8A00C1D69E /* 车主接口.txt */; };
+		DF4826F21CB60FE800C1D69E /* list.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF4826F11CB60FE800C1D69E /* list.txt */; };
 		FA3F4566DF28AF138BA22EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8617B96CB9106E8C0DB41F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -306,6 +308,8 @@
 		DF0991D61C5B44AC001B6F2D /* repairCarStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = repairCarStoreViewController.h; sourceTree = "<group>"; };
 		DF0991D71C5B44AC001B6F2D /* repairCarStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = repairCarStoreViewController.m; sourceTree = "<group>"; };
 		DF0991D81C5B44AC001B6F2D /* repairCarStoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = repairCarStoreViewController.xib; sourceTree = "<group>"; };
+		DF4826EF1CB5DF8A00C1D69E /* 车主接口.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "车主接口.txt"; sourceTree = "<group>"; };
+		DF4826F11CB60FE800C1D69E /* list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = list.txt; sourceTree = "<group>"; };
 		FC8617B96CB9106E8C0DB41F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -418,6 +422,8 @@
 			children = (
 				98E8C1841C49E5EB00310091 /* AppDelegate.h */,
 				98E8C1851C49E5EB00310091 /* AppDelegate.m */,
+				DF4826EF1CB5DF8A00C1D69E /* 车主接口.txt */,
+				DF4826F11CB60FE800C1D69E /* list.txt */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -967,7 +973,6 @@
 				TargetAttributes = {
 					98E8C1641C49E50800310091 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = QNYGZ6JJ24;
 					};
 				};
 			};
@@ -1008,8 +1013,10 @@
 				98E8C1C51C49E5EB00310091 /* Login.storyboard in Resources */,
 				98E8C1BA1C49E5EB00310091 /* LaunchScreen.storyboard in Resources */,
 				DF0991DA1C5B44AC001B6F2D /* repairCarStoreViewController.xib in Resources */,
+				DF4826F21CB60FE800C1D69E /* list.txt in Resources */,
 				987D78B61C9CF847005A0A2C /* UsrStoreTableViewCell.xib in Resources */,
 				98E8C1B81C49E5EB00310091 /* address_list.json in Resources */,
+				DF4826F01CB5DF8A00C1D69E /* 车主接口.txt in Resources */,
 				98E8C1CB1C49E5EB00310091 /* User.storyboard in Resources */,
 				DF0991891C55F6B7001B6F2D /* SearchBarViewController.xib in Resources */,
 			);

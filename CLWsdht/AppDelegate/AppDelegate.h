@@ -7,7 +7,10 @@
 //
 
 #define BASEURL @"http://115.28.133.3:9457/"
+//#define BASEURL @"http://192.168.0.237:8787/"
+
 #define k_BMAP_KEY @"eIcyUlbCgFvAOnZL6jSIFiIy"//百度地图key
+
 
 
 

@@ -12,7 +12,7 @@
 #import "AddressGroupJSONModel.h"//地址model
 #import "AddressJSONModel.h"//地址model
 
-@interface HomeVC (){
+@interface HomeVC () <UISearchBarDelegate> {
     
     NSString *userSeletedCity;//用户选择的城市(默认用户当前位置所在城市)
     NSString *userSeletedCityID;//用户选择的城市ID(默认用户当前位置所在城市)
@@ -129,6 +129,26 @@
 -(void)initUI
 {
     
+    // 张晓新 2016-04-07 添加导航栏搜索框
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 30)];
+    UIColor *color =  self.navigationController.navigationBar.barTintColor;
+    [titleView setBackgroundColor:color];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.delegate = self;
+    searchBar.frame = CGRectMake(0, 0, 180, 30);
+    searchBar.backgroundColor = color;
+    searchBar.layer.cornerRadius = 10;
+    searchBar.layer.masksToBounds = YES;
+    [searchBar.layer setBorderWidth:8];
+    [searchBar.layer setBorderColor:[UIColor whiteColor].CGColor];  //设置边框为白色
+    
+    searchBar.placeholder = @"搜索：配件/商店";
+    [titleView addSubview:searchBar];
+    
+    //Set to titleView
+    [self.navigationItem.titleView sizeToFit];
+    self.navigationItem.titleView = titleView;
 }
 
 #pragma mark - Notification Method

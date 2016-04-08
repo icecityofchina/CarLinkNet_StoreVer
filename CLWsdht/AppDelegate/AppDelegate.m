@@ -13,19 +13,641 @@
 #import "AddressGroupJSONModel.h"
 #import "AddressJSONModel.h"
 #import "MJYUtils.h"
+#import "BaseHeader.h"
 
-@interface AppDelegate ()<
-CLLocationManagerDelegate
->{
+@interface AppDelegate () <CLLocationManagerDelegate> {
     
     CLLocationManager *locationManager;
     BMKMapManager* _mapManager;
+    
+    NSMutableDictionary *_toUpdateNameDic;
+    NSDictionary *_newVerDic;
+    NSMutableDictionary *_toUpdateVerDic;
 }
 
 @end
 
 @implementation AppDelegate
 
+- (NSDictionary *)preDealVers:(NSArray *)vers {
+    
+    NSMutableDictionary *verDic = [[NSMutableDictionary alloc] init];
+    
+    
+    NSString *tempBrandVer = @"";
+    NSString *tempModelVer = @"";
+    
+    
+    for (NSDictionary *tempVerDic in vers) {
+        
+        NSString *name = tempVerDic[@"Name"];
+        NSString *ver = tempVerDic[@"Ver"];
+        
+        if ([@"CarBrand" isEqualToString:name]) {
+            
+            tempBrandVer = ver;
+        }
+        else if ([@"CarModel" isEqualToString:name]) {
+            
+            tempModelVer = ver;
+        }
+        else {
+            
+            [verDic setValue:ver forKey:name];
+        }
+    }
+    
+    if (![@"" isEqualToString:tempBrandVer] && ![@"" isEqualToString:tempModelVer]) {
+        
+        NSString *name = @"CarBrandCarModel";
+        NSString *ver = [NSString stringWithFormat:@"%@-%@", tempBrandVer, tempModelVer];
+        [verDic setValue:ver forKey:name];
+    }
+    
+    return verDic;
+}
+
+- (void)updateDataDictionary {
+    
+    
+    _toUpdateNameDic = [[NSMutableDictionary alloc] init];
+    _toUpdateVerDic = [[NSMutableDictionary alloc] init];
+    
+    [_toUpdateVerDic setObject:@"Dic.asmx/GetCarBrand" forKey:@"CarBrandCarModel"];
+    [_toUpdateVerDic setObject:@"Dic.asmx/GetPartsUseFor" forKey:@"PartsUseFor"];
+    [_toUpdateVerDic setObject:@"Dic.asmx/GetColour" forKey:@"Colour"];
+    [_toUpdateVerDic setObject:@"Dic.asmx/GetPartsSrc" forKey:@"PartsSrc"];
+    [_toUpdateVerDic setObject:@"Dic.asmx/GetPurity" forKey:@"Purity"];
+    [_toUpdateVerDic setObject:@"Dic.asmx/GetProvincial" forKey:@"Provincial"];
+    
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetDicVer];
+    
+    [self.httpManager GET:urlStr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //http请求状态
+        if (task.state == NSURLSessionTaskStateCompleted) {
+            
+            NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSString *dealedResponseString = [responseString stringByReplacingOccurrencesOfString:@"null" withString:@"\"\""];
+            NSData *responseData = [dealedResponseString dataUsingEncoding:NSUTF8StringEncoding];
+            
+            
+            NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseData];
+            NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+            if ([status isEqualToString:@"1"]) {
+                [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                
+                // 各类字典数据的版本号集合
+                NSArray *vers = jsonDic[@"Data"][@"DicVer"];
+                NSDictionary *verDic = [self preDealVers:vers];
+                // 缓存起来，待更新完成时，替换原文件
+                _newVerDic = verDic;
+                
+                NSLog(@"verDic = %@", verDic);
+                
+                // 判断文档目录下的 dicVer.plist 是否存在
+                NSString *verFilePath = [DocumentBasePath stringByAppendingString:@"/dicVer.plist"];
+                NSLog(@"verFilePath = %@", verFilePath);
+                BOOL result = [FileManager fileExistsAtPath:verFilePath];
+                if (result) {
+                    
+                    // 存在，则对比哪些需要更新
+                    NSDictionary *orgVerDic = [[NSDictionary alloc] initWithContentsOfFile:verFilePath];
+                    for (NSString *key in [verDic allKeys]) {
+                        
+                        NSString *ver = verDic[key];
+                        NSString *orgVer = orgVerDic[key];
+                        
+                        // 原版本号集合中没有这个分类，则一定要更新
+                        // 原版本号与新版本号不同，则一定要更新
+                        if (nil == orgVer || [ver isEqualToString:orgVer]) {
+                            
+                            [_toUpdateNameDic setObject:@"" forKey:key];
+                        }
+                        
+                    }
+                    
+                }
+                else {
+                    
+                    // 不存在，则所有项一定要更新
+                    [_toUpdateNameDic setDictionary:verDic];
+                }
+                
+                
+                // 根据 _toUpdateNameDic 中的分类名称来确定哪些需要更新
+                for (NSString *key in [_toUpdateVerDic allKeys]) {
+                    
+                    [self downloadNewData:key];
+                }
+                
+
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [SVProgressHUD showErrorWithStatus:k_Error_Network];
+    }];
+}
+
+- (void)downloadNewData:(NSString *)verName {
+    
+    NSString *dicName = verName;//@"CarBrandCarModel";
+    if ([[_toUpdateNameDic allKeys] containsObject:dicName]) {
+        
+        NSString *partUrl = _toUpdateVerDic[verName];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/%@",BASEURL,partUrl];
+        NSLog(@"urlStr = %@", urlStr);
+        
+        [self.httpManager GET:urlStr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            //http请求状态
+            if (task.state == NSURLSessionTaskStateCompleted) {
+                
+                NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                NSString *dealedResponseString = [responseString stringByReplacingOccurrencesOfString:@"null" withString:@"\"\""];
+                NSData *responseData = [dealedResponseString dataUsingEncoding:NSUTF8StringEncoding];
+                
+                
+                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseData];
+                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                if ([status isEqualToString:@"1"]) {
+                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                    
+                    // 各类字典数据的版本号集合
+                    NSArray *datas = jsonDic[@"Data"];
+                    
+                    
+                    // 保存最新版本号
+                    NSString *dataFilePath = [DocumentBasePath stringByAppendingFormat:@"/%@.plist", dicName];
+                    NSLog(@"dataFilePath = %@", dataFilePath);
+                    BOOL result = [datas writeToFile:dataFilePath atomically:YES];
+                    if (result) {
+                        
+                        // 同步
+                        @synchronized(self) {
+                            
+                            [self overrideVerFile:verName];
+                        }
+                    }
+                    else {
+                        
+                        
+                    }
+                }
+            
+            
+            }
+            
+            
+            
+
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+        }];
+    }
+    
+}
+
+
+- (void)overrideVerFile:(NSString *)verName {
+    
+    // 更新完一个移除一个
+    [_toUpdateVerDic removeObjectForKey:verName];
+    if ([_toUpdateVerDic allKeys].count == 0) {
+        
+        // 保存最新版本号
+        NSString *verFilePath = [DocumentBasePath stringByAppendingString:@"/dicVer.plist"];
+        BOOL result = [_newVerDic writeToFile:verFilePath atomically:YES];
+        if (result) {
+            
+            
+        }
+        else {
+            
+            
+        }
+    }
+}
+
+- (void)updateDataDictionary0 {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetDicVer];
+    
+    [self.httpManager GET:urlStr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //http请求状态
+        if (task.state == NSURLSessionTaskStateCompleted) {
+            NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+            NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+            if ([status isEqualToString:@"1"]) {
+                [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                
+                NSString *CarBrandVer      = @"";
+                NSString *CarModelVer      = @"";
+                NSString *CityVer          = @"";
+                NSString *ColourVer        = @"";
+                NSString *DistrictVer      = @"";
+                NSString *PartsSrcVer      = @"";
+                NSString *PartsTypeVer     = @"";
+                NSString *PartsUseForVer   = @"";
+                NSString *ProvincialVer    = @"";
+                NSString *PurityVer        = @"";
+                
+                
+                
+                NSArray *vers = jsonDic[@"Data"][@"DicVer"];
+                for (NSDictionary *verDic in vers) {
+                    
+                    NSString *name = @"";
+                    NSString *ver = @"";
+                    
+                    name = verDic[@"Name"];
+                    ver = verDic[@"Ver"];
+                    
+                    NSLog(@"name = %@", name);
+                    NSLog(@"ver = %@", ver);
+                    
+                    if ([@"CarBrand" isEqualToString:name]) {
+                        
+                        CarBrandVer = ver;
+                    }
+                    
+                    if ([@"CarModel" isEqualToString:name]) {
+                        
+                        CarModelVer = ver;
+                    }
+                    
+                    if ([@"City" isEqualToString:name]) {
+                        
+                        CityVer = ver;
+                    }
+                    
+                    if ([@"Colour" isEqualToString:name]) {
+                        
+                        ColourVer = ver;
+                    }
+                    
+                    if ([@"District" isEqualToString:name]) {
+                        
+                        DistrictVer = ver;
+                    }
+                    
+                    if ([@"PartsSrc" isEqualToString:name]) {
+                        
+                        PartsSrcVer = ver;
+                    }
+                    
+                    if ([@"PartsType" isEqualToString:name]) {
+                        
+                        PartsTypeVer = ver;
+                    }
+                    
+                    if ([@"PartsUseFor" isEqualToString:name]) {
+                        
+                        PartsUseForVer = ver;
+                    }
+                    
+                    if ([@"Provincial" isEqualToString:name]) {
+                        
+                        ProvincialVer = ver;
+                    }
+                    
+                    if ([@"Purity" isEqualToString:name]) {
+                        
+                        PurityVer = ver;
+                    }
+                    
+                }
+                
+                
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                
+                
+                if (![@"" isEqualToString:CarBrandVer] && ![@"" isEqualToString:CarModelVer]) {
+                    
+                    NSString *carBrandModelVer = [NSString stringWithFormat:@"%@-%@", CarBrandVer, CarModelVer];
+                    NSString *ver = [userDefaults stringForKey:@"BrandModelVer"];
+                    if (nil == ver || ![ver isEqualToString:carBrandModelVer]) {
+                        
+                        // 更新
+                        NSString *updateUrl = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetCarBrand];
+                        [self.httpManager GET:updateUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+                            
+                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            
+                            //http请求状态
+                            if (task.state == NSURLSessionTaskStateCompleted) {
+                                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+                                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                if ([status isEqualToString:@"1"]) {
+                                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                                    
+                                    
+                                    @synchronized(self) {
+                                        
+                                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        NSArray *datas = jsonDic[@"Data"];
+                                        NSString *carBrandModelPath = [DocumentBasePath stringByAppendingFormat:@"/%@", @"BrandModelVer.plist"];
+                                        
+                                        BOOL saveResult = [datas writeToFile:carBrandModelPath atomically:YES];
+                                        if (saveResult) {
+                                            
+                                            NSLog(@"写入 %@ 数据字典成功", carBrandModelPath);
+                                        }
+                                        else {
+                                            
+                                            NSLog(@"写入 %@ 数据字典失败", carBrandModelPath);
+                                        }
+                                        
+                                        [userDefaults setObject:carBrandModelVer forKey:@"BrandModelVer"];
+                                        //[userDefaults setObject:datas forKey:@"BrandModel"];
+                                        [userDefaults synchronize];
+                                        NSLog(@"1、BrandModel");
+                                    }
+                                    
+                                    
+                                } else {
+                                    
+                                    [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+                                    NSLog(@"11、BrandModel");
+                                }
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                NSLog(@"111、BrandModel");
+                            }
+                            
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                            NSLog(@"111、BrandModel");
+                        }];
+                    }
+                    
+                }
+                
+                if (![@"" isEqualToString:PartsUseForVer]) {
+                    
+                    NSString *ver = [userDefaults stringForKey:@"PartsUseForVer"];
+                    if (nil == ver || ![ver isEqualToString:PartsUseForVer]) {
+                        
+                        // 更新
+                        NSString *updateUrl = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetPartsUseFor];
+                        [self.httpManager GET:updateUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+                            
+                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            
+                            //http请求状态
+                            if (task.state == NSURLSessionTaskStateCompleted) {
+                                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+                                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                if ([status isEqualToString:@"1"]) {
+                                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                                    
+                                    
+                                    @synchronized(self) {
+                                        
+                                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        NSArray *datas = jsonDic[@"Data"];
+                                        [userDefaults setObject:PartsUseForVer forKey:@"PartsUseForVer"];
+                                        [userDefaults setObject:datas forKey:@"PartsUseFor"];
+                                        [userDefaults synchronize];
+                                        NSLog(@"1、BrandModel");
+                                    }
+                                    
+                                    
+                                } else {
+                                    
+                                    [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+                                }
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                            }
+                            
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                        }];
+                        
+                    }
+                }
+                
+                if (![@"" isEqualToString:ColourVer]) {
+                    
+                    NSString *ver = [userDefaults stringForKey:@"ColourVer"];
+                    if (nil == ver || ![ver isEqualToString:ColourVer]) {
+                        
+                        // 更新
+                        NSString *updateUrl = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetColour];
+                        [self.httpManager GET:updateUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+                            
+                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            
+                            //http请求状态
+                            if (task.state == NSURLSessionTaskStateCompleted) {
+                                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+                                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                if ([status isEqualToString:@"1"]) {
+                                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                                    
+                                    
+                                    @synchronized(self) {
+                                        
+                                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        NSArray *datas = jsonDic[@"Data"];
+                                        [userDefaults setObject:ColourVer forKey:@"ColourVer"];
+                                        [userDefaults setObject:datas forKey:@"Colour"];
+                                        [userDefaults synchronize];
+                                        NSLog(@"1、BrandModel");
+                                    }
+                                    
+                                    
+                                } else {
+                                    
+                                    [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+                                }
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                            }
+                            
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                        }];
+                        
+                    }
+                }
+                
+                if (![@"" isEqualToString:PartsSrcVer]) {
+                    
+                    NSString *ver = [userDefaults stringForKey:@"PartsSrcVer"];
+                    if (nil == ver || ![ver isEqualToString:PartsSrcVer]) {
+                        
+                        // 更新
+                        NSString *updateUrl = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetPartsSrc];
+                        [self.httpManager GET:updateUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+                            
+                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            
+                            //http请求状态
+                            if (task.state == NSURLSessionTaskStateCompleted) {
+                                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+                                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                if ([status isEqualToString:@"1"]) {
+                                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                                    
+                                    @synchronized(self) {
+                                        
+                                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        NSArray *datas = jsonDic[@"Data"];
+                                        [userDefaults setObject:PartsSrcVer forKey:@"PartsSrcVer"];
+                                        [userDefaults setObject:datas forKey:@"PartsSrc"];
+                                        [userDefaults synchronize];
+                                        NSLog(@"1、BrandModel");
+                                    }
+                                    
+                                } else {
+                                    
+                                    [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+                                }
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                            }
+                            
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                        }];
+                        
+                    }
+                }
+                
+                if (![@"" isEqualToString:PurityVer]) {
+                    
+                    NSString *ver = [userDefaults stringForKey:@"PurityVer"];
+                    if (nil == ver || ![ver isEqualToString:PurityVer]) {
+                        
+                        // 更新
+                        NSString *updateUrl = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetPurity];
+                        [self.httpManager GET:updateUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+                            
+                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            
+                            //http请求状态
+                            if (task.state == NSURLSessionTaskStateCompleted) {
+                                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+                                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                if ([status isEqualToString:@"1"]) {
+                                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                                    
+                                    @synchronized(self) {
+                                        
+                                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        NSArray *datas = jsonDic[@"Data"];
+                                        [userDefaults setObject:PurityVer forKey:@"PurityVer"];
+                                        [userDefaults setObject:datas forKey:@"Purity"];
+                                        [userDefaults synchronize];
+                                        NSLog(@"1、BrandModel");
+                                    }
+                                    
+                                    
+                                } else {
+                                    
+                                    [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+                                }
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                            }
+                            
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                        }];
+                        
+                    }
+                }
+                
+                if (![@"" isEqualToString:ProvincialVer]) {
+                    
+                    NSString *ver = [userDefaults stringForKey:@"ProvincialVer"];
+                    if (nil == ver || ![ver isEqualToString:ProvincialVer]) {
+                        
+                        // 更新
+                        NSString *updateUrl = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetProvincial];
+                        [self.httpManager GET:updateUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+                            
+                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            
+                            //http请求状态
+                            if (task.state == NSURLSessionTaskStateCompleted) {
+                                NSDictionary *jsonDic = [JYJSON dictionaryOrArrayWithJSONSData:responseObject];
+                                NSString *status = [NSString stringWithFormat:@"%@",jsonDic[@"Success"]];
+                                if ([status isEqualToString:@"1"]) {
+                                    [SVProgressHUD showErrorWithStatus:@"接口应答成功"];
+                                    
+                                    @synchronized(self) {
+                                        
+                                        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                        
+                                        NSArray *datas = jsonDic[@"Data"];
+                                        [userDefaults setObject:ProvincialVer forKey:@"ProvincialVer"];
+                                        [userDefaults setObject:datas forKey:@"Provincial"];
+                                        [userDefaults synchronize];
+                                        NSLog(@"1、BrandModel");
+                                    }
+                                    
+                                    
+                                } else {
+                                    
+                                    [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+                                }
+                                
+                            } else {
+                                [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                            }
+                            
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                        }];
+                        
+                    }
+                }
+                
+                
+            } else {
+                [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
+            }
+            
+        } else {
+            [SVProgressHUD showErrorWithStatus:k_Error_Network];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        [SVProgressHUD showErrorWithStatus:k_Error_Network];
+    }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -42,6 +664,7 @@ CLLocationManagerDelegate
      */
     [self initProperty];
     
+    [self updateDataDictionary];
     
     /**
      * 百度地图
@@ -178,8 +801,9 @@ CLLocationManagerDelegate
     self.httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     self.currentCity = @"哈尔滨市";
-    self.currentCityID = @"5fd73a72-ca71-4e9a-a4c0-1238748ecf9e";
+    self.currentCityID = @"";//@"5fd73a72-ca71-4e9a-a4c0-1238748ecf9e";
     
+    // 从 json 加载全国地址列表
     NSMutableArray * maAddressInfos = [MJYUtils mjy_JSONAddressInfos];
     for (AddressGroupJSONModel *groupModel in maAddressInfos) {
         for (AddressJSONModel *address in groupModel.cities) {

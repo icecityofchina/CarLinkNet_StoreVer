@@ -1,0 +1,103 @@
+/**
+*
+* lxl :2016-1-9
+*/
+package net.linkcar.business.util;
+
+/**
+* @author 马骥
+*
+*/
+public class UrlUtils {
+
+// http://192.168.0.237:8787 http://115.28.133.3:9457
+public static final String BASE_URL = "http://115.28.133.3:9457";
+public static final String BASE_URL_USRSTORE = BASE_URL + "/UsrStore.asmx";
+public static final String BASE_URL_DIC = BASE_URL + "/Dic.asmx";
+public static final String BASE_URL_AUTH = BASE_URL + "/auth.asmx";
+public static final String BASE_URL_USR = BASE_URL + "/Usr.asmx";
+public static final String BASE_URL_Aggregate = BASE_URL + "/Aggregate.asmx";
+
+
+// 上传图片
+public static final String BASE_URL_ADDIMG = BASE_URL + "/Post/AddImg.aspx";
+
+
+// UsrStore
+// 获取商品列表
+public static final String URL_UsrStore_GetPartsList = BASE_URL_USRSTORE + "/GetPartsList";
+// 获取需求列表
+public static final String URL_USR_GetDemandList = BASE_URL_USR + "/GetDemandList";
+// 需求详情
+public static final String URL_USR_GetDemandDetail = BASE_URL_USR + "/GetDemandDetail";
+// 需求报价
+public static final String URL_USR_AddDemandRespond = BASE_URL_USR + "/AddDemandRespond";
+// 获取配件詳情
+public static final String URL_UsrStore_GetPartsDetail = BASE_URL_USRSTORE + "/GetPartsDetail";
+// 添加配件
+public static final String URL_UsrStore_AddPartsDetail = BASE_URL_USRSTORE + "/AddParts";
+// 获取配件商配件分类
+public static final String URL_UsrStore_GetPartsUseForByStore = BASE_URL_USRSTORE + "/GetPartsUseForByStore";
+// 获取配件商配件分类
+public static final String URL_UsrStore_ChangePartsState = BASE_URL_USRSTORE + "/ChangePartsState";
+
+
+// Dic
+// 获取字典版本号	http://192.168.0.237:8787/Dic.asmx/GetDicVer
+public static final String URL_Dic_GetDicVer = BASE_URL_DIC + "/GetDicVer";
+// 1､获取品牌车型		http://192.168.0.237:8787/Dic.asmx/GetCarBrand
+public static final String URL_Dic_GetCarBrand = BASE_URL_DIC + "/GetCarBrand";
+// 2､获取配件分类		http://192.168.0.237:8787/Dic.asmx/GetPartsUseFor
+public static final String URL_Dic_GetPartsUseFor = BASE_URL_DIC + "/GetPartsUseFor";
+// 3､获取颜色			http://192.168.0.237:8787/Dic.asmx/GetColour
+public static final String URL_Dic_GetColour = BASE_URL_DIC + "/GetColour";
+// 4､获取配件来源		http://192.168.0.237:8787/Dic.asmx/GetPartsSrc
+public static final String URL_Dic_GetPartsSrc = BASE_URL_DIC + "/GetPartsSrc";
+// 5､获取配件成色		http://192.168.0.237:8787/Dic.asmx/GetPurity
+public static final String URL_Dic_GetPurity = BASE_URL_DIC + "/GetPurity";
+// 6､获取身份城市		http://192.168.0.237:8787/Dic.asmx/GetProvincial
+public static final String URL_Dic_GetProvincial = BASE_URL_DIC + "/GetProvincial";
+
+
+// auth
+// 获取验证码
+public static final String URL_Auth_GetCaptcha = BASE_URL_AUTH + "/GetCaptcha";
+// 配件商密码登录
+public static final String URL_Auth_StoreLoginByPwd = BASE_URL_AUTH + "/StoreLoginByPwd";
+// 配件商验证码
+public static final String URL_Auth_StoreLogin = BASE_URL_AUTH + "/StoreLogin";
+// 配件商信息
+public static final String URL_Auth_StoreByMobile = BASE_URL_AUTH + "/StoreByMobile";
+// 配件商信息修改
+public static final String URL_Auth_StoreUpd = BASE_URL_AUTH + "/StoreUpd";
+// 我的钱包
+public static final String URL_Auth_GetBalance = BASE_URL_AUTH + "/GetBalance";
+// 修改密码
+public static final String URL_Auth_NewPwd = BASE_URL_AUTH + "/NewPwd";
+// 修改手机号
+public static final String URL_Auth_NewMobile = BASE_URL_AUTH + "/NewMobile";
+
+
+// Usr
+// 获取订单列表
+public static final String URL_USR_GetOrdersList = BASE_URL_USR + "/GetOrdersList";
+// 改价
+public static final String URL_USR_StoreConfirmPrice = BASE_URL_USR + "/StoreConfirmPrice";
+// 确认订单
+public static final String URL_USR_StoreConfirm = BASE_URL_USR + "/StoreConfirm";
+// 发货
+public static final String URL_USR_Delivery = BASE_URL_USR + "/Delivery";
+// 确认退货
+public static final String URL_USR_RefundConfirm = BASE_URL_USR + "/RefundConfirm";
+// 确认收货
+public static final String URL_USR_RefundReceipt = BASE_URL_USR + "/RefundReceipt";
+// 确认收货
+public static final String URL_USR_GetRefundPartsOrdersList = BASE_URL_USR + "/GetRefundPartsOrdersList";
+// 资金结算
+public static final String URL_USR_Cash = BASE_URL_USR + "/Cash";
+
+
+// Aggregate
+// 获取修理厂订单处理数量
+public static final String URL_Aggregate_StoreAggregate = BASE_URL_Aggregate + "/StoreAggregate";
+}

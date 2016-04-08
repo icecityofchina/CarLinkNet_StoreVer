@@ -45,6 +45,12 @@ self.edgesForExtendedLayout = UIRectEdgeNone;   \
 #define ApplicationDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 /*
+ * 文件、目录
+ */
+#define DocumentBasePath ((NSString *)[(NSArray *)NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)  objectAtIndex:0])
+#define FileManager [NSFileManager defaultManager]
+
+/*
  *  从NSBundle获取图片，适用于大图(非重复调用)
  */
 #define LoadBigImage(file,type) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] \
