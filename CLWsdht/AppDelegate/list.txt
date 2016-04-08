@@ -1,0 +1,50 @@
+
+/***
+*  1、数据字典更新
+***/
+
+1､ 获取字典版本号 获取字典版本号
+
+1、获取品牌车型 _Dic.asmx_GetCarBrand.txt
+
+
+1、获取品牌车型 _Dic.asmx_GetCarBrand.txt
+
+
+1、获取品牌车型 _Dic.asmx_GetCarBrand.txt
+
+
+2､获取数据字典：最新版本 _Dic.asmx_GetDicVer.txt
+
+
+3､获取数据字典：零件 _Dic.asmx_GetPartsUseFor.txt
+
+
+
+/***
+*  2､授权管理
+***/
+
+4､获取短信验证码 _auth.asmx_GetCaptcha.txt
+
+
+5､验证码登录 _auth.asmx_StoreLogin.txt
+
+
+6､密码登录 _auth.asmx_StoreLoginByPwd.txt
+
+
+7､更新用户信息 _auth.asmx_StoreUpd.txt
+
+
+
+/***
+*  2､授权管理
+***/
+
+
+4､获取短信验证码 _auth.asmx_StoreByMobile.txt
+
+4､获取短信验证码 _UsrStore.asmx_GetPartsList.txt
+
+
