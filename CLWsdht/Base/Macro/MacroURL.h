@@ -26,9 +26,9 @@
  ***/
 
 #define k_url_auth_GetCaptcha       @"auth.asmx/GetCaptcha"         // 获取验证码
-#define k_url_auth_StoreLogin       @"auth.asmx/StoreLogin"         // 验证码登录
+#define k_url_auth_StoreLogin       @"auth.asmx/StoreLogin"         // 验证码登录:快速注册
 #define k_url_auth_StoreLoginByPwd  @"auth.asmx/StoreLoginByPwd"    // 密码登录
-#define k_url_auth_StoreUpd         @"auth.asmx/StoreUpd"           // 帐户信息修改
+#define k_url_auth_StoreUpd         @"auth.asmx/StoreUpd"           // 帐户信息修改：细化注册信息
 
 #define k_url_auth_StoreByMobile    @"auth.asmx/StoreByMobile"      // 帐户信息
 #define k_url_auth_GetBalance       @"auth.asmx/GetBalance"         // 我的钱包
