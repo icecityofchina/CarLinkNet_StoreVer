@@ -109,6 +109,11 @@
 		DF0991DB1C5C5831001B6F2D /* repairCarStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0991D71C5B44AC001B6F2D /* repairCarStoreViewController.m */; };
 		DF4826F01CB5DF8A00C1D69E /* 车主接口.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF4826EF1CB5DF8A00C1D69E /* 车主接口.txt */; };
 		DF4826F21CB60FE800C1D69E /* list.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF4826F11CB60FE800C1D69E /* list.txt */; };
+		DFDF69441CB8B495008EF043 /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = DFDF69431CB8B495008EF043 /* city.json */; };
+		DFDF91FF1CB87074003A9EF5 /* homebg.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDF91FD1CB87074003A9EF5 /* homebg.png */; };
+		DFDF92001CB87074003A9EF5 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDF91FE1CB87074003A9EF5 /* splash.png */; };
+		DFDF92031CB87287003A9EF5 /* ScaleBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDF92021CB87287003A9EF5 /* ScaleBackButton.m */; };
+		DFDF92051CB87622003A9EF5 /* dem_hx.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDF92041CB87622003A9EF5 /* dem_hx.png */; };
 		FA3F4566DF28AF138BA22EA5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8617B96CB9106E8C0DB41F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -310,6 +315,12 @@
 		DF0991D81C5B44AC001B6F2D /* repairCarStoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = repairCarStoreViewController.xib; sourceTree = "<group>"; };
 		DF4826EF1CB5DF8A00C1D69E /* 车主接口.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "车主接口.txt"; sourceTree = "<group>"; };
 		DF4826F11CB60FE800C1D69E /* list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = list.txt; sourceTree = "<group>"; };
+		DFDF69431CB8B495008EF043 /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = city.json; sourceTree = "<group>"; };
+		DFDF91FD1CB87074003A9EF5 /* homebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homebg.png; sourceTree = "<group>"; };
+		DFDF91FE1CB87074003A9EF5 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		DFDF92011CB87287003A9EF5 /* ScaleBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleBackButton.h; sourceTree = "<group>"; };
+		DFDF92021CB87287003A9EF5 /* ScaleBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleBackButton.m; sourceTree = "<group>"; };
+		DFDF92041CB87622003A9EF5 /* dem_hx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dem_hx.png; sourceTree = "<group>"; };
 		FC8617B96CB9106E8C0DB41F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -394,6 +405,7 @@
 		98E8C1671C49E50800310091 /* CLWsdht */ = {
 			isa = PBXGroup;
 			children = (
+				DFDF91FB1CB87074003A9EF5 /* Resource */,
 				C9A0D72E1C4A2E1E0028EEB8 /* Lib */,
 				98E8C1CC1C49E60900310091 /* Base */,
 				98E8C1831C49E5EB00310091 /* AppDelegate */,
@@ -407,6 +419,7 @@
 		98E8C1681C49E50800310091 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFDF69431CB8B495008EF043 /* city.json */,
 				98E8C1821C49E5EB00310091 /* address_list.json */,
 				DF0991CA1C585634001B6F2D /* Assets.xcassets */,
 				98E8C1791C49E50800310091 /* LaunchScreen.storyboard */,
@@ -872,6 +885,8 @@
 			children = (
 				DF0991741C55F676001B6F2D /* HomeVC.h */,
 				DF0991751C55F676001B6F2D /* HomeVC.m */,
+				DFDF92011CB87287003A9EF5 /* ScaleBackButton.h */,
+				DFDF92021CB87287003A9EF5 /* ScaleBackButton.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -939,6 +954,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DFDF91FB1CB87074003A9EF5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DFDF91FC1CB87074003A9EF5 /* img */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DFDF91FC1CB87074003A9EF5 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				DFDF92041CB87622003A9EF5 /* dem_hx.png */,
+				DFDF91FD1CB87074003A9EF5 /* homebg.png */,
+				DFDF91FE1CB87074003A9EF5 /* splash.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1004,9 +1037,12 @@
 				DF0991871C55F6B7001B6F2D /* ChoseSparePartsViewController.xib in Resources */,
 				98E8C17B1C49E50800310091 /* LaunchScreen.storyboard in Resources */,
 				DF0991CB1C585634001B6F2D /* Assets.xcassets in Resources */,
+				DFDF91FF1CB87074003A9EF5 /* homebg.png in Resources */,
 				989626951CA3DB6B00B6F9EB /* per_yrz.png in Resources */,
 				DF0991C91C5767C1001B6F2D /* ScrollViewTestViewController.xib in Resources */,
+				DFDF92001CB87074003A9EF5 /* splash.png in Resources */,
 				C9622DCE1C4B40E700AE849E /* ZLPhotoLib.bundle in Resources */,
+				DFDF92051CB87622003A9EF5 /* dem_hx.png in Resources */,
 				C9D829661C49F4130063EBC6 /* MyShop.storyboard in Resources */,
 				DF0991791C55F676001B6F2D /* Home.storyboard in Resources */,
 				DF0991D51C5B3223001B6F2D /* ChosePlaceViewController.xib in Resources */,
@@ -1014,6 +1050,7 @@
 				98E8C1BA1C49E5EB00310091 /* LaunchScreen.storyboard in Resources */,
 				DF0991DA1C5B44AC001B6F2D /* repairCarStoreViewController.xib in Resources */,
 				DF4826F21CB60FE800C1D69E /* list.txt in Resources */,
+				DFDF69441CB8B495008EF043 /* city.json in Resources */,
 				987D78B61C9CF847005A0A2C /* UsrStoreTableViewCell.xib in Resources */,
 				98E8C1B81C49E5EB00310091 /* address_list.json in Resources */,
 				DF4826F01CB5DF8A00C1D69E /* 车主接口.txt in Resources */,
@@ -1109,6 +1146,7 @@
 				C9622DC91C4B40E700AE849E /* ZLPhotoPickerCollectionView.m in Sources */,
 				C9622DC01C4B40E700AE849E /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				98E8C1F21C49E60900310091 /* GTMBase64.m in Sources */,
+				DFDF92031CB87287003A9EF5 /* ScaleBackButton.m in Sources */,
 				C9622DC21C4B40E700AE849E /* ZLPhotoAssets.m in Sources */,
 				C9622DC81C4B40E700AE849E /* ZLPhotoPickerViewController.m in Sources */,
 				C9A0D7321C4A2E2A0028EEB8 /* FSDropDownMenu.m in Sources */,

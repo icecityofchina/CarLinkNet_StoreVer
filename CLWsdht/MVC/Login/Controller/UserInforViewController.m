@@ -12,6 +12,8 @@
 #import "AddressGroupJSONModel.h"//
 #import "CityListVC.h"//城市列表
 
+#import "LoginViewController.h"
+
 @interface UserInforViewController ()<
 UITextViewDelegate,
 UIAlertViewDelegate,
@@ -230,7 +232,7 @@ UIImagePickerControllerDelegate
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_user_StoreUpd];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_auth_StoreUpd];
     
     NSDictionary *paramDict = @{
                                 @"Id":ApplicationDelegate.userInfo.user_Id,
@@ -255,6 +257,10 @@ UIImagePickerControllerDelegate
             if ([status isEqualToString:@"1"]) {
                 //成功返回
                 [SVProgressHUD showSuccessWithStatus:@"用户信息修改成功"];
+                
+                [self.navigationController popToViewController:ApplicationDelegate.loginViewController animated:YES];
+                
+                
             } else {
                 [SVProgressHUD showErrorWithStatus:jsonDic[@"Message"]];
             }

@@ -530,7 +530,7 @@ FSDropDownMenuDelegate
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_GetCarBrand];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetCarBrand];
     
     [ApplicationDelegate.httpManager POST:urlStr parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -574,7 +574,7 @@ FSDropDownMenuDelegate
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_GetPartsUseFor];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetPartsUseFor];
     
     [ApplicationDelegate.httpManager POST:urlStr parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -618,7 +618,7 @@ FSDropDownMenuDelegate
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_GetColour];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetColour];
     
     [ApplicationDelegate.httpManager POST:urlStr parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -665,7 +665,7 @@ FSDropDownMenuDelegate
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_GetPurity];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetPurity];
     
     [ApplicationDelegate.httpManager POST:urlStr parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -712,7 +712,7 @@ FSDropDownMenuDelegate
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_GetPartsSrc];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_Dic_GetPartsSrc];
     
     [ApplicationDelegate.httpManager POST:urlStr parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

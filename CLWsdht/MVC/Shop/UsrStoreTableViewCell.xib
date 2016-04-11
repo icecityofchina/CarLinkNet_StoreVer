@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,12 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m7z-GE-l3L">
                         <rect key="frame" x="8" y="10" width="120" height="79"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.53941124080000002" green="0.76792217190000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="bEs-QQ-pbt"/>
@@ -25,7 +24,6 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d77-3r-kR7">
                         <rect key="frame" x="136" y="8" width="176" height="42"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="42" id="fYt-kY-9Sg"/>
                         </constraints>
@@ -35,7 +33,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8AX-BA-4px">
                         <rect key="frame" x="136" y="75" width="92" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="VrD-tO-DG2"/>
                             <constraint firstAttribute="height" constant="21" id="smH-3G-979"/>
@@ -46,7 +43,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyr-Rf-vVa">
                         <rect key="frame" x="136" y="54" width="92" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="08A-Tg-vXA"/>
                             <constraint firstAttribute="height" constant="21" id="6TK-C7-3fR"/>
@@ -57,7 +53,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全新" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ie-zq-Otu">
                         <rect key="frame" x="228" y="78" width="34" height="15"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.25432854729729731" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="2eb-5l-EyG"/>
@@ -69,7 +64,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正厂" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baZ-53-IE2">
                         <rect key="frame" x="269" y="78" width="43" height="15"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.25432854729999999" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="43" id="b1W-Ag-uj5"/>
@@ -81,7 +75,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lu9-kR-83i">
                         <rect key="frame" x="271" y="55" width="42" height="18"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.25432854729999999" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="GLL-CI-r74"/>
@@ -93,14 +86,12 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="per_yrz.png" translatesAutoresizingMaskIntoConstraints="NO" id="bXz-XR-snp">
                         <rect key="frame" x="244" y="54" width="21" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="21" id="5jH-ty-hKp"/>
                             <constraint firstAttribute="height" constant="21" id="p91-ot-FCD"/>
                         </constraints>
                     </imageView>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="m7z-GE-l3L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="1Rg-Ur-x7H"/>
                     <constraint firstItem="baZ-53-IE2" firstAttribute="leading" secondItem="1ie-zq-Otu" secondAttribute="trailing" constant="7" id="1re-Tw-3oW"/>
@@ -121,7 +112,6 @@
                     <constraint firstItem="uyr-Rf-vVa" firstAttribute="leading" secondItem="m7z-GE-l3L" secondAttribute="trailing" constant="8" id="zy7-66-NVK"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="image" destination="m7z-GE-l3L" id="8C1-ho-26n"/>
                 <outlet property="partsSrcName" destination="baZ-53-IE2" id="KWu-TI-Q7X"/>

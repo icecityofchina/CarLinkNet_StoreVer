@@ -10,6 +10,7 @@
 #import "AddressGroupJSONModel.h"
 #import "AddressJSONModel.h"
 #import "JYJSON.h"
+#import "BaseHeader.h"
 
 @implementation MJYUtils
 
@@ -435,7 +436,9 @@
  */
 + (NSMutableArray *) mjy_JSONAddressInfos
 {
-    NSString *addressPath = [[NSBundle mainBundle] pathForResource:@"address_list.json" ofType:nil];
+    
+    NSString *dataFilePath = [DocumentBasePath stringByAppendingFormat:@"/Provincial.plist"];
+    NSString *addressPath = [[NSBundle mainBundle] pathForResource:@"city.json" ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:addressPath options:NSDataReadingUncached error:nil];
     NSDictionary *dicAddress = [JYJSON dictionaryOrArrayWithJSONSData:data];
     NSArray *arrAddress = dicAddress[@"citylist"];

@@ -62,7 +62,17 @@
     userSeletedCity = ApplicationDelegate.currentCity;
     userSeletedCityID = ApplicationDelegate.currentCityID;
     [self initRightButtonItemWithCityName:userSeletedCity];
-    /*
+    
+    
+    //显示登录页面
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+//    LoginViewController *vc = [sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//    self.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:NO];
+//    self.hidesBottomBarWhenPushed = NO;
+    
+    
+    
     if (!ApplicationDelegate.isLogin) {
         //显示登录页面
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
@@ -77,7 +87,9 @@
         userSeletedCityID = ApplicationDelegate.currentCityID;
         [self initRightButtonItemWithCityName:userSeletedCity];
     }
-     */
+     
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -180,7 +192,7 @@
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 44)];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [btn setTitle:cityName forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     [btn addTarget:self action:@selector(seleteCityAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:btn];

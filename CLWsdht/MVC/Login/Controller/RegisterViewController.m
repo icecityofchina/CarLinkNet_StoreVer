@@ -124,7 +124,7 @@
 {
     [SVProgressHUD showWithStatus:k_Status_VerifyCode];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_login_code];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_auth_StoreLogin];
     
     NSDictionary *paramDict = @{
                                 @"mobile":_telTextField.text,
@@ -167,7 +167,7 @@
 {
     [SVProgressHUD showWithStatus:k_Status_Load];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_get_userInfo];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASEURL,k_url_auth_StoreByMobile];
     
     NSDictionary *paramDict = @{
                                 @"mobile":_telTextField.text,
